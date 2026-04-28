@@ -25,8 +25,7 @@ jobs:
 
       - name: Run preprocessing
         run: |
-          cd preprocessing
-          python automate_Ran.py
+          python preprocessing/automate_Ran.py
 
       - name: Commit hasil preprocessing
         run: |

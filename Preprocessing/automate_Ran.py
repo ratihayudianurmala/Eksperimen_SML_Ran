@@ -52,8 +52,8 @@ def save_output(X_train, X_test, y_train, y_test, output_path):
 
 
 def main():
-    raw_path = '../data_raw'
-    output_path = 'olist_preprocessing'
+    raw_path = 'data_raw'
+    output_path = 'preprocessing/olist_preprocessing'
 
     print("Loading data...")
     reviews = load_data(raw_path)
