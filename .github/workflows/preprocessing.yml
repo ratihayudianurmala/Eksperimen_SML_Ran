@@ -1,0 +1,37 @@
+name: Automated Preprocessing
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  preprocessing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install pandas numpy scikit-learn scipy
+
+      - name: Run preprocessing
+        run: |
+          cd preprocessing
+          python automate_Ran.py
+
+      - name: Commit hasil preprocessing
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add preprocessing/olist_preprocessing/
+          git diff --staged --quiet || git commit -m "auto: update preprocessed dataset"
+          git push
